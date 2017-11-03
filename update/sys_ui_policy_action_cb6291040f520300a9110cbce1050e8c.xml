@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_policy_action">
+    <sys_ui_policy_action action="INSERT_OR_UPDATE">
+        <disabled>ignore</disabled>
+        <field>parent_case</field>
+        <mandatory>true</mandatory>
+        <sys_class_name>sys_ui_policy_action</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-11-03 04:35:23</sys_created_on>
+        <sys_id>cb6291040f520300a9110cbce1050e8c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>parent_case</sys_name>
+        <sys_package display_value="STAT Points" source="x_75086_stat_point">61080e990f420300a9110cbce1050ef3</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="STAT Points">61080e990f420300a9110cbce1050ef3</sys_scope>
+        <sys_update_name>sys_ui_policy_action_cb6291040f520300a9110cbce1050e8c</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-11-03 04:35:23</sys_updated_on>
+        <table>x_75086_stat_point_proposal</table>
+        <ui_policy display_value="Constant UI Policy">cb4ec5400f520300a9110cbce1050e71</ui_policy>
+        <visible>ignore</visible>
+    </sys_ui_policy_action>
+</record_update>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_75086_stat_point.ProposalQueryUtil</api_name>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>ProposalQueryUtil</name>
+        <script><![CDATA[var ProposalQueryUtil = Class.create();
+ProposalQueryUtil.prototype = {
+	
+	// STAT Points roles
+	ROLE_PROPOSAL_CUSTOMER : 'x_75086_stat_point.proposal_customer',
+	ROLE_PROPOSAL_AGENT : 'x_75086_stat_point.proposal_agent',
+	
+	// CSM roles
+	ROLE_CUSTOMER_ADMIN        : 'sn_customerservice.customer_admin',
+	
+	
+	initialize: function() { },
+
+	
+	canProposalCustomerReadCase: function (current) {
+		
+		// can never read Drafts
+		if (current.state == '1') {
+			return false;
+		}
+		
+		if (gs.hasRole(this.ROLE_PROPOSAL_CUSTOMER) && current.contact == gs.getUser().getID()) {
+			return true;
+		}
+
+		else if (gs.hasRole(this.ROLE_CUSTOMER_ADMIN)) {
+
+			//for account in account tree
+			var account_path = current.account.account_path;
+			var path = global.CSQueryBRUtil.getAccountPath();
+			if (!gs.nil(path) && !gs.nil(account_path) && account_path.indexOf(path) == 0) {
+				return true;
+			}
+		}
+	},
+	
+	addProposalCustomerQueryBR: function(current) {
+		
+		var query = current.addQuery("contact", gs.getUserID());
+		query.addCondition('state', '!=', '1');  // no drafts
+		if(gs.hasRole(this.ROLE_CUSTOMER_ADMIN)) {
+
+			if (gs.hasRole(this.ROLE_PARTNER_ADMIN)) {
+				 query.addOrCondition("partner", gs.getUser().getCompanyID());
+			}
+
+			var path = global.CSQueryBRUtil.getAccountPath();
+			if (!gs.nil(path)) {
+				query.addOrCondition("account.account_path", 'STARTSWITH', path);
+			}
+		}
+		
+		return current;
+	},
+	
+	getProposalContactsRefQualifier: function(accountSysId) {
+		
+		gs.info('Looking up accountContactsWithRole for {0}', accountSysId);
+		var accountContactsWithRole = [];
+		if (accountSysId) {
+
+			var roleSysId = new GlideRecord('sys_user_role');
+			var foundRole = roleSysId.get('name', this.ROLE_PROPOSAL_CUSTOMER);
+			if (!foundRole) {
+				gs.warn('Failed to look up role {0} in proposal contact ref qualifier', this.ROLE_PROPOSAL_CUSTOMER);
+				return '';
+			}
+
+			var accountContacts = [];
+			var contactsGR = new GlideRecord('customer_contact');
+			contactsGR.addQuery('account', accountSysId);
+			contactsGR.query();
+			gs.info('FOund {0} contacts', contactsGR.getRowCount());
+			while (contactsGR.next()) {
+				accountContacts.push(contactsGR.getUniqueValue());
+			}
+
+			var roledContactsGR = new GlideRecord('sys_user_has_role');
+			roledContactsGR.addQuery('role', roleSysId.getUniqueValue());
+			roledContactsGR.addEncodedQuery('userIN' + accountContacts.join(','));
+			gs.info('FOund {0} roled contacts using {1}', roledContactsGR.getRowCount(), roledContactsGR.getEncodedQuery());
+			roledContactsGR.query();
+			while (roledContactsGR.next()) {
+				accountContactsWithRole.push(roledContactsGR.getValue('user'));
+			}
+		}
+		
+		gs.info('Found {0} accountContactsWithRole: {1}', accountContactsWithRole.length, accountContactsWithRole.join(','));
+		return 'sys_idIN' + accountContactsWithRole.join(','); 
+	},
+	
+	
+	getEntitlementsRefQualifier: function(accountSysId) {
+
+		var entitlementsList = [];
+		
+		if (accountSysId) {
+			var entitlementsGR = new GlideRecord('service_entitlement');
+			entitlementsGR.addQuery('account', accountSysId);
+			entitlementsGR.query();
+			while (entitlementsGR.next()) {
+				entitlementsList.push(entitlementsGR.getUniqueValue());
+			}
+		}
+
+		return 'sys_idIN' + entitlementsList.join(','); 
+	},
+	
+	
+	type: 'ProposalQueryUtil'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-10-27 17:33:39</sys_created_on>
+        <sys_id>98bff33d0f060300a9110cbce1050e09</sys_id>
+        <sys_mod_count>22</sys_mod_count>
+        <sys_name>ProposalQueryUtil</sys_name>
+        <sys_package display_value="STAT Points" source="x_75086_stat_point">61080e990f420300a9110cbce1050ef3</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="STAT Points">61080e990f420300a9110cbce1050ef3</sys_scope>
+        <sys_update_name>sys_script_include_98bff33d0f060300a9110cbce1050e09</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-11-03 04:24:43</sys_updated_on>
+    </sys_script_include>
+</record_update>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element audit="true" extends="task" label="Proposal" max_length="40" name="x_75086_stat_point_proposal" sizeclass="3" type="collection">
+        <element label="Contact" max_length="32" name="contact" reference="customer_contact" reference_qual="javascript:new ProposalQueryUtil().getProposalContactsRefQualifier(current.parent_case.account)" type="reference" use_reference_qualifier="advanced"/>
+        <element label="Entitlement" max_length="32" name="entitlement" reference="service_entitlement" reference_qual="javascript:new ProposalQueryUtil().getEntitlementsRefQualifier(current.parent_case.account)" type="reference" use_reference_qualifier="advanced"/>
+        <element label="Case" max_length="32" name="parent_case" reference="sn_customerservice_case" type="reference"/>
+        <element label="Points" max_length="40" name="points" type="integer"/>
+    </element>
+</database>

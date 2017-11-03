@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_embedded_help_role">
+    <sys_embedded_help_role action="INSERT_OR_UPDATE">
+        <order>1000</order>
+        <role display_value="sn_app_cs_social_social_channel_user" name="sn_app_cs_social_social_channel_user">dc962652d73022004f1e82285e6103a0</role>
+        <sys_class_name>sys_embedded_help_role</sys_class_name>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2017-10-25 19:32:06</sys_created_on>
+        <sys_id>306906110f820300a9110cbce1050eb0</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>dc962652d73022004f1e82285e6103a0</sys_name>
+        <sys_package display_value="STAT Points" source="x_75086_stat_point">61080e990f420300a9110cbce1050ef3</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="STAT Points">61080e990f420300a9110cbce1050ef3</sys_scope>
+        <sys_update_name>sys_embedded_help_role_306906110f820300a9110cbce1050eb0</sys_update_name>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2017-10-25 19:32:06</sys_updated_on>
+    </sys_embedded_help_role>
+</record_update>

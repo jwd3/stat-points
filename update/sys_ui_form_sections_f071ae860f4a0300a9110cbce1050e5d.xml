@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_ui_form_sections form_id="f071ae860f4a0300a9110cbce1050e5d" sys_domain="global" table="customer_account" version="3">
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>0</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2017-10-28 05:12:39</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>3471ae860f4a0300a9110cbce1050e63</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="customer_account" name="customer_account" sys_domain="global" view="6bb6a381dd2003003399d83d70be0274">f071ae860f4a0300a9110cbce1050e5d</sys_ui_form>
+            <sys_ui_section caption="Company" display_value="Company" name="customer_account" sys_domain="global" view="6bb6a381dd2003003399d83d70be0274">f071ae860f4a0300a9110cbce1050e61</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2017-10-28 05:12:39</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>1</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2017-10-28 05:12:39</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>fc71ae860f4a0300a9110cbce1050e60</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="customer_account" name="customer_account" sys_domain="global" view="6bb6a381dd2003003399d83d70be0274">f071ae860f4a0300a9110cbce1050e5d</sys_ui_form>
+            <sys_ui_section caption="Information" display_value="Information" name="customer_account" sys_domain="global" view="c12b7492d7010100fceaa6859e6103e6">7c71ae860f4a0300a9110cbce1050e5e</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2017-10-28 05:12:39</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form action="INSERT_OR_UPDATE">
+            <name>customer_account</name>
+            <roles/>
+            <sys_class_name>sys_ui_form</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2017-10-28 05:12:39</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>f071ae860f4a0300a9110cbce1050e5d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>customer_account</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="STAT Points" source="x_75086_stat_point">61080e990f420300a9110cbce1050ef3</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="STAT Points">61080e990f420300a9110cbce1050ef3</sys_scope>
+            <sys_update_name>sys_ui_form_sections_f071ae860f4a0300a9110cbce1050e5d</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2017-10-28 05:12:39</sys_updated_on>
+            <sys_user/>
+            <view display_value="Sys_popup,vendor" name="sys_popup,vendor">6bb6a381dd2003003399d83d70be0274</view>
+            <view_name/>
+        </sys_ui_form>
+    </sys_ui_form_sections>
+</record_update>

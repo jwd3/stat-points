@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function ($scope, spUtil) {
+	var c = this;
+	
+	$scope.$on('record.updated', function(name, data) {
+		//on record state change, update the value
+		for (i = 0; i < data.changes.length; i++){
+			var field = data.changes[i];
+			if (field == "state") {
+				c.data.state = data.record.state.value;
+			}
+		}
+	});
+	
+	c.action = function(table, id, state) {
+		c.data.action = 'update';
+		c.data.state = state;
+		c.data.sys_id = id;
+		c.data.table = table;
+		c.server.update().then(function(response) {
+			if(state==3 && $scope.data.url){
+				window.location = $scope.data.url;	
+			}
+		});
+		
+	};
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.question {&#13;
+  text-align: center;&#13;
+  margin-top: 1em;&#13;
+}&#13;
+&#13;
+.spacer {&#13;
+  display:inline-block;&#13;
+  width:5%;&#13;
+}&#13;
+&#13;
+.btn-question {&#13;
+	&#13;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list>color</field_list>
+        <has_preview>false</has_preview>
+        <id>proposal-action</id>
+        <internal>false</internal>
+        <link/>
+        <name>Proposal Action</name>
+        <option_schema/>
+        <public>false</public>
+        <roles>snc_external,snc_internal</roles>
+        <script><![CDATA[(function(data) {
+	if (input && input.action === 'update' && input.sys_id && input.table) {
+		var record = new GlideRecord(input.table);
+		if(record.isValid() && record.get(input.sys_id)) {
+			record.state = input.state;
+			var status = record.update();
+			data.status = 'OK';
+			if (status == '') {
+				gs.addErrorMessage(gs.getMessage("Error in changing the status"));
+				
+			} else if (input.state === '3') {
+
+				var updatedRecord = $sp.getRecord();
+				if (updatedRecord.state == '3') {
+					gs.addInfoMessage(gs.getMessage("You have accepted this solution"));
+				}
+			} else if (input.state === '-1') {
+				gs.addInfoMessage(gs.getMessage("You have rejected this solution"));
+			}
+		} else {
+			gs.addErrorMessage(gs.getMessage("Requested object not found {0} : {1}", [input.table, input.sys_id]));
+		}
+	}
+
+	var gr = $sp.getRecord();
+	if (gr) {
+		data.state = gr.getValue('state');
+		data.stateLabel = gr.getDisplayValue('state');
+		data.sys_updated_on = gr.sys_updated_on.toString();
+		data.label = gr.getLabel();
+		data.table = gr.getRecordClassName();
+		data.sys_id = gr.getUniqueValue();
+	}
+})(data);
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-10-31 16:26:28</sys_created_on>
+        <sys_id>d07854930f460300a9110cbce1050e89</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>Proposal Action</sys_name>
+        <sys_package display_value="STAT Points" source="x_75086_stat_point">61080e990f420300a9110cbce1050ef3</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="STAT Points">61080e990f420300a9110cbce1050ef3</sys_scope>
+        <sys_update_name>sp_widget_d07854930f460300a9110cbce1050e89</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-10-31 16:48:16</sys_updated_on>
+        <template><![CDATA[<div ng-if="c.data.state == '6'" class="panel panel-primary b">
+  <div class="panel-heading">
+  	<h4 class="panel-title">${Actions}</h4>
+  	
+  </div>  
+  <div class="panel-body" >
+    <form ng-submit="$event.preventDefault()" class="form-horizontal" ng-if="c.data.state == '6'">
+      <div class="question">
+        <button type="button" name="accept" class="btn btn-success btn-question" ng-click="c.action(data.table, data.sys_id, '3')">${Accept Solution}</button>
+      </div>
+      <div class="question">
+        <button type="button" name="reject" class="btn btn-default btn-question" ng-click="c.action(data.table, data.sys_id, '-1')">${Reject Solution}</button>
+      </div>
+    </form>
+  </div>  
+</div>]]></template>
+    </sp_widget>
+</record_update>
