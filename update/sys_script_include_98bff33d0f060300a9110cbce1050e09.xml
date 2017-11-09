@@ -23,8 +23,8 @@ ProposalQueryUtil.prototype = {
 	
 	canProposalCustomerReadCase: function (current) {
 		
-		// can never read Drafts
-		if (current.state == '1') {
+		// can never read Drafts or Cancelled
+		if (current.state == '1' || current.state == '7') {
 			return false;
 		}
 		
@@ -47,6 +47,7 @@ ProposalQueryUtil.prototype = {
 		
 		var query = current.addQuery("contact", gs.getUserID());
 		query.addCondition('state', '!=', '1');  // no drafts
+		query.addCondition('state', '!=', '7');  // no cancelled
 		if(gs.hasRole(this.ROLE_CUSTOMER_ADMIN)) {
 
 			if (gs.hasRole(this.ROLE_PARTNER_ADMIN)) {
@@ -122,13 +123,13 @@ ProposalQueryUtil.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-10-27 17:33:39</sys_created_on>
         <sys_id>98bff33d0f060300a9110cbce1050e09</sys_id>
-        <sys_mod_count>22</sys_mod_count>
+        <sys_mod_count>23</sys_mod_count>
         <sys_name>ProposalQueryUtil</sys_name>
         <sys_package display_value="STAT Points" source="x_75086_stat_point">61080e990f420300a9110cbce1050ef3</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="STAT Points">61080e990f420300a9110cbce1050ef3</sys_scope>
         <sys_update_name>sys_script_include_98bff33d0f060300a9110cbce1050e09</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-11-03 04:24:43</sys_updated_on>
+        <sys_updated_on>2017-11-09 20:15:38</sys_updated_on>
     </sys_script_include>
 </record_update>
