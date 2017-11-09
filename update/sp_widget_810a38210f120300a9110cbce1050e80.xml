@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function() {  /* widget controller */  var c = this;}]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list>color</field_list>
+        <has_preview>false</has_preview>
+        <id>proposal-details</id>
+        <internal>false</internal>
+        <link/>
+        <name>Proposal Details</name>
+        <option_schema/>
+        <public>true</public>
+        <roles>snc_external,snc_internal</roles>
+        <script><![CDATA[(function(){
+
+	var rec = $sp.getRecord();
+	
+	data.isValid = $sp.canReadRecord(rec);
+	if (data.isValid) {
+		
+		data.number = rec.getValue('number');
+		data.shortDescription = rec.getValue('short_description');
+		data.contact = $sp.getField(rec, 'contact').display_value;
+		data.lastUpdated = $sp.getField(rec, 'sys_updated_on').display_value;
+		data.state = $sp.getField(rec, 'state').display_value;
+		
+		var desc = rec.getValue('description');
+		if (desc) {
+			data.text = desc.replace('\n', '<br/>');
+		}
+	}
+	
+ })()
+
+
+/*
+var t = data;
+
+var articleGR = rec;
+//if m2m table get publication record
+if (articleGR.getRecordClassName()  == "sn_publications_publication_contact_m2m")
+	articleGR = rec.publication.getRefRecord();
+
+var recordIsValid = articleGR.isValidRecord();
+var canReadArticle = articleGR.canRead();
+t.isvalid = recordIsValid && canReadArticle;
+
+if (canReadArticle) {
+	t.short_description = articleGR.getValue('short_description');
+	t.text = articleGR.getValue('text');
+	t.number = articleGR.getValue('number');
+	
+	//update pub as viewed
+	var gr = new GlideRecord("sn_publications_publication_contact_m2m");
+	gr.addQuery("publication", articleGR.getUniqueValue());
+	gr.addQuery("user", gs.getUserID());
+	gr.query();
+	if(gr.next()) {
+		gr.setValue("viewed_article", true);
+		gr.update();
+	}
+	
+}
+*/]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-11-07 18:39:29</sys_created_on>
+        <sys_id>810a38210f120300a9110cbce1050e80</sys_id>
+        <sys_mod_count>31</sys_mod_count>
+        <sys_name>Proposal Details</sys_name>
+        <sys_package display_value="STAT Points" source="x_75086_stat_point">61080e990f420300a9110cbce1050ef3</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="STAT Points">61080e990f420300a9110cbce1050ef3</sys_scope>
+        <sys_update_name>sp_widget_810a38210f120300a9110cbce1050e80</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-11-07 19:54:39</sys_updated_on>
+        <template><![CDATA[<div ng-if="data.isValid" class="panel panel-{{options.color}} b">
+
+  <div class="panel-heading">
+    <h4 class="panel-title">{{::data.number}}<span class="pull-right">{{::data.state}}</span></h4>
+  </div>
+  
+  <div class="panel-body m-b-lg wrapper-lg">
+    <div class="row m-b-lg b-b">
+        <span class="author pad-right" ng-if="data.contact">
+          <glyph sn-char="user" class="pad-right" />
+          ${Contact: {{::data.contact}}}
+        </span>
+        <span class="published pad-right">
+          <span class="pad-right">&#8226;</span> <glyph sn-char="calendar" class="pad-right" />
+          Last Updated: <sn-day-ago date="data.lastUpdated"/>
+        </span>
+    </div>
+    
+    <h2>{{::data.shortDescription}}</h2>
+    
+    <div class="l-h-2x" ng-bind-html="::data.text" style="overflow-x:auto;"></div>
+  </div>
+
+</div>]]></template>
+    </sp_widget>
+</record_update>

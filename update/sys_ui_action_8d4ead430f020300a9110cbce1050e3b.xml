@@ -30,7 +30,19 @@
 	proposal.setValue('parent_case', current.sys_id);
 	proposal.setValue('entitlement', current.entitlement);
 	proposal.setValue('account', current.account);
-	proposal.setValue('contact', current.contact);
+	
+	if (current.contact) {
+		
+		var userRole = new GlideRecord('sys_user_has_role');
+		userRole.addQuery('role', 'a432c73d0f820300a9110cbce1050e12'); // proposal customer
+		userRole.addQuery('user', current.contact);
+		userRole.query();
+		
+		if (userRole.next()) {
+			proposal.setValue('contact', current.contact);
+		}
+	}
+	
 	proposal.insert();
 	
 	gs.addInfoMessage('Proposal ' + proposal.getDisplayValue() + ' created');
@@ -49,7 +61,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>8d4ead430f020300a9110cbce1050e3b</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_name>Create Proposal</sys_name>
         <sys_overrides/>
         <sys_package display_value="STAT Points" source="x_75086_stat_point">61080e990f420300a9110cbce1050ef3</sys_package>
@@ -57,7 +69,7 @@
         <sys_scope display_value="STAT Points">61080e990f420300a9110cbce1050ef3</sys_scope>
         <sys_update_name>sys_ui_action_8d4ead430f020300a9110cbce1050e3b</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-11-03 05:03:55</sys_updated_on>
+        <sys_updated_on>2017-11-03 05:48:37</sys_updated_on>
         <table>sn_customerservice_case</table>
         <ui11_compatible>true</ui11_compatible>
         <ui16_compatible>false</ui16_compatible>
