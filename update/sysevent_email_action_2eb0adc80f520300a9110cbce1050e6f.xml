@@ -8,8 +8,8 @@
         <affected_field_on_event/>
         <category display_value="Customer Service">a69d02137f232200ee2e108c3ffa9130</category>
         <collection>x_75086_stat_point_proposal</collection>
-        <condition table="x_75086_stat_point_proposal">commentsVALCHANGES^state!=3^contactISNOTEMPTY^EQ<item endquery="false" field="comments" goto="false" newquery="false" operator="VALCHANGES" or="false" value=""/>
-            <item endquery="false" field="state" goto="false" newquery="false" operator="!=" or="false" value="3"/>
+        <condition table="x_75086_stat_point_proposal">commentsVALCHANGES^stateNOT IN-1,8,3^contactISNOTEMPTY^EQ<item endquery="false" field="comments" goto="false" newquery="false" operator="VALCHANGES" or="false" value=""/>
+            <item endquery="false" field="state" goto="false" newquery="false" operator="NOT IN" or="false" value="-1,8,3"/>
             <item endquery="false" field="contact" goto="false" newquery="false" operator="ISNOTEMPTY" or="false" value=""/>
             <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
         </condition>
@@ -58,7 +58,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>2eb0adc80f520300a9110cbce1050e6f</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>Proposal commented for contact</sys_name>
         <sys_overrides/>
         <sys_package display_value="STAT Points" source="x_75086_stat_point">61080e990f420300a9110cbce1050ef3</sys_package>
@@ -66,7 +66,7 @@
         <sys_scope display_value="STAT Points">61080e990f420300a9110cbce1050ef3</sys_scope>
         <sys_update_name>sysevent_email_action_2eb0adc80f520300a9110cbce1050e6f</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-11-03 05:41:45</sys_updated_on>
+        <sys_updated_on>2017-11-09 18:29:28</sys_updated_on>
         <sys_version>2</sys_version>
         <template display_value="Unsubscribe and Preferences">7ed0481f3b0b2200c869c2c703efc487</template>
         <type>email</type>

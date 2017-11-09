@@ -12,16 +12,16 @@
         <advanced>true</advanced>
         <change_fields>false</change_fields>
         <client_callable>false</client_callable>
-        <collection>x_75086_stat_point_proposal</collection>
+        <collection>sn_customerservice_case</collection>
         <condition/>
         <description/>
         <execute_function>false</execute_function>
-        <filter_condition table="x_75086_stat_point_proposal">stateCHANGESTO-1^EQ<item endquery="false" field="state" goto="false" newquery="false" operator="CHANGESTO" or="false" value="-1"/>
+        <filter_condition table="sn_customerservice_case">stateCHANGESTO6^EQ<item endquery="false" field="state" goto="false" newquery="false" operator="CHANGESTO" or="false" value="6"/>
             <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
         </filter_condition>
         <is_rest>false</is_rest>
         <message/>
-        <name>Check Entitlements &amp; Delete Points</name>
+        <name>Verify Proposals Before Closing</name>
         <order>100</order>
         <priority>100</priority>
         <rest_method/>
@@ -31,50 +31,40 @@
         <rest_variables/>
         <role_conditions/>
         <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
-
-	var entitlementGR = new GlideRecord('service_entitlement');
-	entitlementGR.addQuery('sys_id', current.entitlement);
-	entitlementGR.query();
 	
-	var errorMsg = '';
+	var proposedProposalCount = new GlideAggregate('x_75086_stat_point_proposal');
+	proposedProposalCount.addQuery('state', 6);
+	proposedProposalCount.addAggregate('COUNT');
+	proposedProposalCount.query();
 	
-	if (!entitlementGR.next()) {
-		gs.error('Configured entitlement was not found.  Bad things happened'); // FIXME : Handle better.
-		errorMsg = 'Could not find entitlement for proposal.';
-	}
-	else if (entitlementGR.remaining_units < current.points) {
-		errorMsg = 'Entitlement ' + entitlementGR.getDisplayValue() + ' does not have enough remaining units.';
-		gs.warn(errorMsg);
+	var openProposals = 0;
+	if (proposedProposalCount.next()) {
+		openProposals = proposedProposalCount.getAggregate('COUNT');
 	}
 	
-	if (errorMsg != '') {
-		gs.addErrorMessage(errorMsg);
-		current.state = '6';
+	if (openProposals > 0) {
+		gs.addErrorMessage('Please amend all outstanding proposals before resolving the case.');
+		current.state = previous.state;
 	}
-	else {
-		entitlementGR.remaining_units = entitlementGR.remaining_units - current.points;
-		entitlementGR.update();
-		gs.info('{0} was accepted.  Decrementing by {1} units.', current.getDisplayValue(), current.points);
-	}
-
+	
 })(current, previous);]]></script>
         <sys_class_name>sys_script</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2017-10-31 04:59:10</sys_created_on>
+        <sys_created_on>2017-11-09 18:49:22</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
-        <sys_id>37f879870f020300a9110cbce1050e33</sys_id>
-        <sys_mod_count>2</sys_mod_count>
-        <sys_name>Check Entitlements &amp; Delete Points</sys_name>
+        <sys_id>957f47ce0f520300a9110cbce1050e8e</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>Verify Proposals Before Closing</sys_name>
         <sys_overrides/>
         <sys_package display_value="STAT Points" source="x_75086_stat_point">61080e990f420300a9110cbce1050ef3</sys_package>
         <sys_policy/>
         <sys_scope display_value="STAT Points">61080e990f420300a9110cbce1050ef3</sys_scope>
-        <sys_update_name>sys_script_37f879870f020300a9110cbce1050e33</sys_update_name>
+        <sys_update_name>sys_script_957f47ce0f520300a9110cbce1050e8e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-11-09 18:19:27</sys_updated_on>
+        <sys_updated_on>2017-11-09 19:47:36</sys_updated_on>
         <template/>
         <when>before</when>
     </sys_script>
-    <sys_translated_text action="delete_multiple" query="documentkey=37f879870f020300a9110cbce1050e33"/>
+    <sys_translated_text action="delete_multiple" query="documentkey=957f47ce0f520300a9110cbce1050e8e"/>
 </record_update>

@@ -5,7 +5,7 @@
         <active>true</active>
         <client>false</client>
         <comments/>
-        <condition>!current.entitlement.nil() &amp;&amp; gs.hasRole('x_75086_stat_point.proposal_agent')</condition>
+        <condition>!current.entitlement.nil() &amp;&amp; current.state != 6 &amp;&amp; current.state != 3 &amp;&amp; current.state != 7 &amp;&amp; gs.hasRole('x_75086_stat_point.proposal_agent')</condition>
         <form_action>true</form_action>
         <form_button>true</form_button>
         <form_context_menu>false</form_context_menu>
@@ -61,7 +61,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>8d4ead430f020300a9110cbce1050e3b</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_name>Create Proposal</sys_name>
         <sys_overrides/>
         <sys_package display_value="STAT Points" source="x_75086_stat_point">61080e990f420300a9110cbce1050ef3</sys_package>
@@ -69,7 +69,7 @@
         <sys_scope display_value="STAT Points">61080e990f420300a9110cbce1050ef3</sys_scope>
         <sys_update_name>sys_ui_action_8d4ead430f020300a9110cbce1050e3b</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-11-03 05:48:37</sys_updated_on>
+        <sys_updated_on>2017-11-09 19:53:49</sys_updated_on>
         <table>sn_customerservice_case</table>
         <ui11_compatible>true</ui11_compatible>
         <ui16_compatible>false</ui16_compatible>

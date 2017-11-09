@@ -20,11 +20,10 @@
 		c.data.sys_id = id;
 		c.data.table = table;
 		c.server.update().then(function(response) {
-			if(state==3 && $scope.data.url){
+			if (state==-1 && $scope.data.url){
 				window.location = $scope.data.url;	
 			}
 		});
-		
 	};
 }]]></client_script>
         <controller_as>c</controller_as>
@@ -64,13 +63,13 @@
 			if (status == '') {
 				gs.addErrorMessage(gs.getMessage("Error in changing the status"));
 				
-			} else if (input.state === '3') {
+			} else if (input.state === '-1') {
 
 				var updatedRecord = $sp.getRecord();
-				if (updatedRecord.state == '3') {
+				if (updatedRecord.state == '-1') {
 					gs.addInfoMessage(gs.getMessage("You have accepted this solution"));
 				}
-			} else if (input.state === '-1') {
+			} else if (input.state === '8') {
 				gs.addInfoMessage(gs.getMessage("You have rejected this solution"));
 			}
 		} else {
@@ -94,14 +93,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-10-31 16:26:28</sys_created_on>
         <sys_id>d07854930f460300a9110cbce1050e89</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_name>Proposal Action</sys_name>
         <sys_package display_value="STAT Points" source="x_75086_stat_point">61080e990f420300a9110cbce1050ef3</sys_package>
         <sys_policy/>
         <sys_scope display_value="STAT Points">61080e990f420300a9110cbce1050ef3</sys_scope>
         <sys_update_name>sp_widget_d07854930f460300a9110cbce1050e89</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-10-31 16:48:16</sys_updated_on>
+        <sys_updated_on>2017-11-09 18:23:28</sys_updated_on>
         <template><![CDATA[<div ng-if="c.data.state == '6'" class="panel panel-primary b">
   <div class="panel-heading">
   	<h4 class="panel-title">${Actions}</h4>
@@ -110,10 +109,10 @@
   <div class="panel-body" >
     <form ng-submit="$event.preventDefault()" class="form-horizontal" ng-if="c.data.state == '6'">
       <div class="question">
-        <button type="button" name="accept" class="btn btn-success btn-question" ng-click="c.action(data.table, data.sys_id, '3')">${Accept Solution}</button>
+        <button type="button" name="accept" class="btn btn-success btn-question" ng-click="c.action(data.table, data.sys_id, '-1')">${Accept Solution}</button>
       </div>
       <div class="question">
-        <button type="button" name="reject" class="btn btn-default btn-question" ng-click="c.action(data.table, data.sys_id, '-1')">${Reject Solution}</button>
+        <button type="button" name="reject" class="btn btn-default btn-question" ng-click="c.action(data.table, data.sys_id, '8')">${Reject Solution}</button>
       </div>
     </form>
   </div>  

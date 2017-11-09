@@ -36,51 +36,20 @@
 		}
 	}
 	
- })()
-
-
-/*
-var t = data;
-
-var articleGR = rec;
-//if m2m table get publication record
-if (articleGR.getRecordClassName()  == "sn_publications_publication_contact_m2m")
-	articleGR = rec.publication.getRefRecord();
-
-var recordIsValid = articleGR.isValidRecord();
-var canReadArticle = articleGR.canRead();
-t.isvalid = recordIsValid && canReadArticle;
-
-if (canReadArticle) {
-	t.short_description = articleGR.getValue('short_description');
-	t.text = articleGR.getValue('text');
-	t.number = articleGR.getValue('number');
-	
-	//update pub as viewed
-	var gr = new GlideRecord("sn_publications_publication_contact_m2m");
-	gr.addQuery("publication", articleGR.getUniqueValue());
-	gr.addQuery("user", gs.getUserID());
-	gr.query();
-	if(gr.next()) {
-		gr.setValue("viewed_article", true);
-		gr.update();
-	}
-	
-}
-*/]]></script>
+ })()]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2017-11-07 18:39:29</sys_created_on>
         <sys_id>810a38210f120300a9110cbce1050e80</sys_id>
-        <sys_mod_count>31</sys_mod_count>
+        <sys_mod_count>32</sys_mod_count>
         <sys_name>Proposal Details</sys_name>
         <sys_package display_value="STAT Points" source="x_75086_stat_point">61080e990f420300a9110cbce1050ef3</sys_package>
         <sys_policy/>
         <sys_scope display_value="STAT Points">61080e990f420300a9110cbce1050ef3</sys_scope>
         <sys_update_name>sp_widget_810a38210f120300a9110cbce1050e80</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-11-07 19:54:39</sys_updated_on>
+        <sys_updated_on>2017-11-09 18:24:22</sys_updated_on>
         <template><![CDATA[<div ng-if="data.isValid" class="panel panel-{{options.color}} b">
 
   <div class="panel-heading">
