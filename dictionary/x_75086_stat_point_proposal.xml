@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <database>
-    <element audit="true" extends="task" label="Proposal" max_length="40" name="x_75086_stat_point_proposal" sizeclass="2" type="collection">
+    <element audit="true" extends="task" label="Proposal" max_length="40" name="x_75086_stat_point_proposal" sizeclass="11" type="collection">
         <element attributes="readonly_clickthrough=true" label="Contact" max_length="32" name="contact" reference="customer_contact" reference_qual="javascript:new ProposalQueryUtil().getProposalContactsRefQualifier(current.parent_case.account)" type="reference" use_reference_qualifier="advanced"/>
         <element attributes="readonly_clickthrough=true" label="Entitlement" max_length="32" name="entitlement" reference="service_entitlement" reference_qual="javascript:new ProposalQueryUtil().getEntitlementsRefQualifier(current.parent_case.account)" type="reference" use_reference_qualifier="advanced"/>
         <element label="Expires" max_length="40" name="expires_at" type="glide_date"/>

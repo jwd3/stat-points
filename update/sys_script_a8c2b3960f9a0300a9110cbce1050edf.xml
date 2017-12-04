@@ -32,6 +32,8 @@
         <role_conditions/>
         <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
 
+	gs.info('BR :: adding comment to case {0}', current.getDisplayValue());
+	
 	if (current.parent_case) {
 
 		var caseGR = new GlideRecord('sn_customerservice_case');
@@ -59,7 +61,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>a8c2b3960f9a0300a9110cbce1050edf</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>Create Notification in Case on Propose</sys_name>
         <sys_overrides/>
         <sys_package display_value="STAT Points" source="x_75086_stat_point">61080e990f420300a9110cbce1050ef3</sys_package>
@@ -67,7 +69,7 @@
         <sys_scope display_value="STAT Points">61080e990f420300a9110cbce1050ef3</sys_scope>
         <sys_update_name>sys_script_a8c2b3960f9a0300a9110cbce1050edf</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2017-11-10 16:57:05</sys_updated_on>
+        <sys_updated_on>2017-11-15 18:44:45</sys_updated_on>
         <template/>
         <when>async</when>
     </sys_script>
