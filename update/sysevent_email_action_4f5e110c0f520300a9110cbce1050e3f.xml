@@ -6,7 +6,7 @@
         <active>true</active>
         <advanced_condition/>
         <affected_field_on_event/>
-        <category display_value="Customer Service">a69d02137f232200ee2e108c3ffa9130</category>
+        <category display_value="Customer Service" name="Customer Service">a69d02137f232200ee2e108c3ffa9130</category>
         <collection>x_75086_stat_point_proposal</collection>
         <condition table="x_75086_stat_point_proposal">stateCHANGESTO6^EQ<item endquery="false" field="state" goto="false" newquery="false" operator="CHANGESTO" or="false" value="6"/>
             <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>

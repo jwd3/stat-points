@@ -6,7 +6,7 @@
         <active>true</active>
         <advanced_condition/>
         <affected_field_on_event/>
-        <category display_value="Customer Service">a69d02137f232200ee2e108c3ffa9130</category>
+        <category display_value="Customer Service" name="Customer Service">a69d02137f232200ee2e108c3ffa9130</category>
         <collection>x_75086_stat_point_proposal</collection>
         <condition table="x_75086_stat_point_proposal">commentsVALCHANGES^stateNOT IN-1,8,3^contactISNOTEMPTY^EQ<item endquery="false" field="comments" goto="false" newquery="false" operator="VALCHANGES" or="false" value=""/>
             <item endquery="false" field="state" goto="false" newquery="false" operator="NOT IN" or="false" value="-1,8,3"/>
